@@ -1,0 +1,49 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:padding="40dp"
+        android:gravity="center">
+
+        <View
+            android:layout_width="80dp"
+            android:layout_height="6dp"
+            android:background="@color/green_light"
+            android:layout_marginBottom="40dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="URNET"
+            android:textColor="@color/green_primary"
+            android:textSize="46sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Conectando talentos, creando oportunidades"
+            android:textColor="@color/gray_dark"
+            android:textSize="18sp"
+            android:textAlignment="center"
+            android:layout_marginBottom="60dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnImpulsate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_background"
+            android:paddingStart="42dp"
+            android:paddingEnd="32dp"
+            android:text="¡Impúlsate!"
+            android:textColor="@color/white"
+            android:textSize="23sp" />
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,24 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/inicioFragment"
+        android:title="Inicio"/>
+
+    <!-- CAMBIAMOS este ID -->
+    <item
+        android:id="@+id/descubrirFragment"
+        android:title="Descubrir"/>
+
+    <item
+        android:id="@+id/crearFragment"
+        android:title="Crear"/>
+
+    <item
+        android:id="@+id/chatsFragment"
+        android:title="Chats"/>
+
+    <item
+        android:id="@+id/perfilFragment"
+        android:title="Perfil"/>
+
+</menu>

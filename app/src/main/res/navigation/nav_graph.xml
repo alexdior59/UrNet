@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/inicioFragment">
+
+    <fragment
+        android:id="@+id/inicioFragment"
+        android:name="com.rajkishorbgp.sign_up_sign_in.fragments.InicioFragment"
+        android:label="Inicio"
+        tools:layout="@layout/fragment_inicio"/>
+
+    <fragment
+        android:id="@+id/misOportunidadesFragment"
+        android:name="com.rajkishorbgp.sign_up_sign_in.fragments.MisOportunidadesFragment"
+        android:label="Mis Oportunidades" >
+
+        <action
+            android:id="@+id/action_misOportunidadesFragment_to_detalleOportunidadFragment"
+            app:destination="@id/detalleOportunidadFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/descubrirFragment"
+        android:name="com.rajkishorbgp.sign_up_sign_in.fragments.DescubrirFragment"
+        android:label="Descubrir"
+        tools:layout="@layout/fragment_descubrir"/>
+
+    <fragment
+        android:id="@+id/crearFragment"
+        android:name="com.rajkishorbgp.sign_up_sign_in.fragments.CrearFragment"
+        android:label="Crear Evento"
+        tools:layout="@layout/fragment_crear"/>
+
+    <fragment
+        android:id="@+id/chatsFragment"
+        android:name="com.rajkishorbgp.sign_up_sign_in.fragments.ChatsFragment"
+        android:label="Chats">
+        <action
+            android:id="@+id/action_chatsFragment_to_chatDetailFragment"
+            app:destination="@id/chatDetailFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/chatDetailFragment"
+        android:name="com.rajkishorbgp.sign_up_sign_in.ChatDetailFragment"
+        android:label="Chat" />
+
+    <fragment
+        android:id="@+id/detalleOportunidadFragment"
+        android:name="com.rajkishorbgp.sign_up_sign_in.fragments.DetalleOportunidadFragment"
+        android:label="Detalle Oportunidad"
+        tools:layout="@layout/fragment_detalle_oportunidad">
+
+        <argument
+            android:name="oportunidad"
+            app:argType="com.rajkishorbgp.sign_up_sign_in.model.Oportunidad" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/crearOportunidadFragment"
+        android:name="com.rajkishorbgp.sign_up_sign_in.fragments.CrearOportunidadFragment"
+        android:label="Crear Oportunidad">
+        <argument
+            android:name="tipo"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/misOportunidadesFragment"
+        android:name="com.rajkishorbgp.sign_up_sign_in.fragments.MisOportunidadesFragment"
+        android:label="Mis Oportunidades"
+        tools:layout="@layout/fragment_mis_oportunidades" />
+
+    <fragment
+        android:id="@+id/perfilFragment"
+        android:name="com.rajkishorbgp.sign_up_sign_in.fragments.PerfilFragment"
+        android:label="Perfil"
+        tools:layout="@layout/fragment_perfil">
+        <action
+            android:id="@+id/action_perfilFragment_to_signInActivity"
+            app:destination="@id/signInActivity"/>
+        <action
+            android:id="@+id/action_perfilFragment_to_misOportunidadesFragment"
+            app:destination="@id/misOportunidadesFragment" />
+
+    </fragment>
+
+    <activity
+        android:id="@+id/signInActivity"
+        android:name="com.rajkishorbgp.sign_up_sign_in.SignInActivity"
+        android:label="SignInActivity"/>
+</navigation>

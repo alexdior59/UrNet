@@ -1,34 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:elevation="4dp"
+    android:layout_marginBottom="12dp"
     android:padding="16dp">
 
-    <TextView
-        android:id="@+id/tvNombreOportunidad"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Nombre Oportunidad"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvUsuarioOportunidad"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Usuario"
-        android:textSize="14sp"
-        android:textColor="@android:color/darker_gray"
-        android:layout_marginTop="4dp" />
+        <TextView
+            android:id="@+id/txtNombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre"
+            android:textStyle="bold"
+            android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/tvTipoOportunidad"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tipo"
-        android:textSize="14sp"
-        android:textColor="@android:color/darker_gray"
-        android:layout_marginTop="4dp" />
-</LinearLayout>
+        <TextView
+            android:id="@+id/txtUsuario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@usuario"
+            android:textColor="#666666" />
 
+        <TextView
+            android:id="@+id/txtBoton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Botón"
+            android:textColor="@color/green_primary"
+            android:textStyle="italic"
+            android:layout_marginTop="8dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAplicar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aplicar y Chatear"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:backgroundTint="@color/green_primary"
+            style="@style/Widget.MaterialComponents.Button"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:layout_marginTop="8dp"
+            app:cornerRadius="32dp"
+            app:iconPadding="8dp"
+            app:iconTint="@color/white"
+            app:iconGravity="textStart"/>
+
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

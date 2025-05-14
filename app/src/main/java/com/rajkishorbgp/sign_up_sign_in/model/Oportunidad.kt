@@ -7,6 +7,6 @@ data class Oportunidad(
     val usuario: String,
     val tipoBoton: String,
     val descripcion: String? = null,
-    val interesados: List<String>? = null, // Aquí agregué la coma
-    val imagen: Int? = null // Este campo es para la imagen, puedes usar un recurso drawable
+    val interesados: List<String>? = null,
+    val imagen: Int? = null
 ) : Serializable

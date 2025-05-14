@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rajkishorbgp.sign_up_sign_in.adapters.OportunidadesAdapter
 import com.rajkishorbgp.sign_up_sign_in.data.OportunidadesRepository
+import com.rajkishorbgp.sign_up_sign_in.data.UsuarioRepository
 import com.rajkishorbgp.sign_up_sign_in.databinding.FragmentMisOportunidadesBinding
 
 class MisOportunidadesFragment : Fragment() {
@@ -21,11 +22,14 @@ class MisOportunidadesFragment : Fragment() {
     ): View {
         _binding = FragmentMisOportunidadesBinding.inflate(inflater, container, false)
 
-        // Leer las oportunidades desde el repositorio
-        val oportunidades = OportunidadesRepository.obtenerMisOportunidades(requireContext())
+        val usuario = UsuarioRepository.obtenerSesion(requireContext())
+        val oportunidades = if (usuario != null) {
+            OportunidadesRepository.obtenerMisOportunidadesPorUsuario(requireContext(), usuario.username)
+        } else {
+            emptyList()
+        }
 
-        // Configurar el RecyclerView con las oportunidades
-        val adapter = OportunidadesAdapter(oportunidades)
+        val adapter = OportunidadesAdapter(oportunidades, onAplicarClick = {}, mostrarBoton = false)
         binding.recyclerMisOportunidades.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerMisOportunidades.adapter = adapter
 

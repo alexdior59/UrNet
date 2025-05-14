@@ -8,46 +8,6 @@
     android:padding="16dp"
     android:background="@color/green_soft_background">
 
-    <!-- Contenedor para el título, imagen y descripción -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp"
-        android:gravity="center">
-
-        <!-- Título de las oportunidades -->
-        <TextView
-            android:id="@+id/tvWelcomeTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:text="Nuevas oportunidades"
-            android:textColor="@color/colorPrimary"
-            android:textSize="24sp"
-            android:textStyle="bold"/>
-
-
-
-        <!-- Descripción -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Conectando talentos y creando oportunidades"
-            android:textSize="16sp"
-            android:textColor="@color/colorPrimaryDark"
-            android:gravity="center"
-            android:layout_marginBottom="32dp"/>
-
-    </LinearLayout>
-
-    <!-- RecyclerView para mostrar las oportunidades -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerOportunidades"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:clipToPadding="false"/>
 
     <!-- Fragmento que contiene el NavController (pantalla de navegación) -->
     <androidx.fragment.app.FragmentContainerView

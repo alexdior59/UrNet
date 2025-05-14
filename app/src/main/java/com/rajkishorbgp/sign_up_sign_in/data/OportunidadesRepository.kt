@@ -10,26 +10,33 @@ object OportunidadesRepository {
 
     private const val FILE_NAME = "oportunidades.json"
 
-    // Función para agregar una nueva oportunidad
     fun agregar(context: Context, oportunidad: Oportunidad) {
         val oportunidades = obtenerMisOportunidades(context).toMutableList()
         oportunidades.add(oportunidad)
 
-        // Guardamos las oportunidades en el archivo JSON
         val json = Gson().toJson(oportunidades)
         val file = File(context.filesDir, FILE_NAME)
         file.writeText(json)
     }
 
-    // Función para obtener todas las oportunidades guardadas
     fun obtenerMisOportunidades(context: Context): List<Oportunidad> {
         val file = File(context.filesDir, FILE_NAME)
         if (!file.exists()) {
-            return emptyList() // Si no existe el archivo, devolvemos una lista vacía
+            return emptyList()
         }
 
         val json = file.readText()
         val type = object : TypeToken<List<Oportunidad>>() {}.type
         return Gson().fromJson(json, type)
+    }
+
+    fun obtenerMisOportunidadesPorUsuario(context: Context, usuarioActual: String): List<Oportunidad> {
+        val file = File(context.filesDir, FILE_NAME)
+        if (!file.exists()) return emptyList()
+
+        val json = file.readText()
+        val type = object : TypeToken<List<Oportunidad>>() {}.type
+        val todas = Gson().fromJson<List<Oportunidad>>(json, type)
+        return todas.filter { it.usuario == usuarioActual }
     }
 }

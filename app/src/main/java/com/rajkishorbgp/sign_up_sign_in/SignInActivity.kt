@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.rajkishorbgp.sign_up_sign_in.data.UsuarioRepository
 import com.rajkishorbgp.sign_up_sign_in.databinding.ActivitySignInBinding
 
 class SignInActivity : AppCompatActivity() {
@@ -25,8 +26,14 @@ class SignInActivity : AppCompatActivity() {
             val password = binding.loginPassword.text.toString()
 
             if (email.isNotEmpty() && password.isNotEmpty()) {
-                startActivity(Intent(this, MainActivity::class.java))
-                finish()
+                val usuario = UsuarioRepository.autenticar(this, email, password)
+                if (usuario != null) {
+                    UsuarioRepository.guardarSesion(this, usuario)
+                    startActivity(Intent(this, MainActivity::class.java))
+                    finish()
+                } else {
+                    Toast.makeText(this, "Credenciales incorrectas", Toast.LENGTH_SHORT).show()
+                }
             } else {
                 Toast.makeText(this, "Ingresa email y contraseña", Toast.LENGTH_SHORT).show()
             }

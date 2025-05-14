@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <!-- Encabezado con imagen y nombre -->
     <LinearLayout
         android:id="@+id/headerProfile"
         android:layout_width="match_parent"
@@ -22,14 +21,16 @@
             android:background="@drawable/circle_white_border"
             android:contentDescription="Foto de perfil" />
 
-        <TextView
-            android:id="@+id/tvNombre"
+        <EditText
+            android:id="@+id/etNombre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nombre"
             android:textColor="@android:color/white"
             android:textSize="20sp"
             android:textStyle="bold"
+            android:background="@android:color/transparent"
+            android:gravity="center"
             android:layout_marginTop="16dp" />
 
         <TextView
@@ -114,23 +115,36 @@
         android:layout_below="@id/statsLayout"
         android:layout_marginTop="16dp" />
 
-    <TextView
-        android:id="@+id/tvDescripcion"
+    <EditText
+        android:id="@+id/etDescripcion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Descripción breve del usuario."
         android:textColor="@color/text_secondary"
+        android:background="@android:color/transparent"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
-        android:layout_below="@id/aboutMeTitle" />
+        android:layout_below="@id/aboutMeTitle"
+        android:textSize="14sp" />
+
+    <!-- Botón guardar perfil -->
+    <Button
+        android:id="@+id/btnGuardarPerfil"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Guardar cambios"
+        android:layout_below="@id/etDescripcion"
+        android:layout_margin="16dp"
+        android:backgroundTint="@color/green_primary"
+        android:textColor="@android:color/white" />
 
     <!-- Opciones del perfil -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_below="@id/tvDescripcion"
-        android:layout_marginTop="16dp">
+        android:layout_below="@id/btnGuardarPerfil"
+        android:layout_marginTop="8dp">
 
         <TextView
             android:layout_width="match_parent"
@@ -173,7 +187,7 @@
             android:background="?attr/selectableItemBackground" />
     </LinearLayout>
 
-    <!-- Botón para ver oportunidades creadas -->
+    <!-- Botón ver oportunidades -->
     <Button
         android:id="@+id/btnVerOportunidades"
         android:layout_width="match_parent"

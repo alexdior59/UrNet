@@ -1,14 +1,16 @@
 package com.rajkishorbgp.sign_up_sign_in.fragments
 
-import Chat
-import ChatsAdapter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.rajkishorbgp.sign_up_sign_in.model.Chat
 import androidx.recyclerview.widget.RecyclerView
+import com.rajkishorbgp.sign_up_sign_in.R
+import com.rajkishorbgp.sign_up_sign_in.adapters.ChatsAdapter
+import com.rajkishorbgp.sign_up_sign_in.data.ChatRepository
 import com.rajkishorbgp.sign_up_sign_in.databinding.FragmentChatsBinding
 
 class ChatsFragment : Fragment() {
@@ -32,25 +34,13 @@ class ChatsFragment : Fragment() {
     }
 
     private fun setupMockData() {
-        chats.addAll(listOf(
-            Chat(
-                name = "Club Runners",
-                lastMessage = "¡Hola! ¿Estás interesado en el maratón?",
-                time = "10:30"
-            ),
-            Chat(
-                name = "Colectivo Artístico",
-                lastMessage = "La exposición comienza a las 17:30",
-                time = "Ayer"
-            ),
-            Chat(
-                name = "Grupo Senderismo",
-                lastMessage = "Recuerda traer agua y protector solar",
-                time = "Lun"
-            )
-        ))
+        chats.clear()
+        chats.addAll(ChatRepository.obtenerTodos(requireContext()))
+        binding.rvChats.adapter = ChatsAdapter(chats) { chat ->
+            val bundle = Bundle().apply { putString("nombreChat", chat.name) }
+            findNavController().navigate(R.id.action_chatsFragment_to_chatDetailFragment, bundle)
+        }
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

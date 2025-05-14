@@ -15,8 +15,8 @@
     <fragment
         android:id="@+id/misOportunidadesFragment"
         android:name="com.rajkishorbgp.sign_up_sign_in.fragments.MisOportunidadesFragment"
-        android:label="Mis Oportunidades" >
-
+        android:label="Mis Oportunidades"
+        tools:layout="@layout/fragment_mis_oportunidades">
         <action
             android:id="@+id/action_misOportunidadesFragment_to_detalleOportunidadFragment"
             app:destination="@id/detalleOportunidadFragment" />
@@ -26,7 +26,12 @@
         android:id="@+id/descubrirFragment"
         android:name="com.rajkishorbgp.sign_up_sign_in.fragments.DescubrirFragment"
         android:label="Descubrir"
-        tools:layout="@layout/fragment_descubrir"/>
+        tools:layout="@layout/fragment_descubrir">
+
+        <action
+            android:id="@+id/action_descubrirFragment_to_detalleOportunidadFragment"
+            app:destination="@id/detalleOportunidadFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/crearFragment"
@@ -46,7 +51,11 @@
     <fragment
         android:id="@+id/chatDetailFragment"
         android:name="com.rajkishorbgp.sign_up_sign_in.ChatDetailFragment"
-        android:label="Chat" />
+        android:label="Chat">
+        <argument
+            android:name="nombreChat"
+            app:argType="string" />
+    </fragment>
 
     <fragment
         android:id="@+id/detalleOportunidadFragment"
@@ -57,8 +66,11 @@
         <argument
             android:name="oportunidad"
             app:argType="com.rajkishorbgp.sign_up_sign_in.model.Oportunidad" />
-    </fragment>
 
+        <action
+            android:id="@+id/action_detalleOportunidadFragment_to_chatDetailFragment"
+            app:destination="@id/chatDetailFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/crearOportunidadFragment"
@@ -70,23 +82,18 @@
     </fragment>
 
     <fragment
-        android:id="@+id/misOportunidadesFragment"
-        android:name="com.rajkishorbgp.sign_up_sign_in.fragments.MisOportunidadesFragment"
-        android:label="Mis Oportunidades"
-        tools:layout="@layout/fragment_mis_oportunidades" />
-
-    <fragment
         android:id="@+id/perfilFragment"
         android:name="com.rajkishorbgp.sign_up_sign_in.fragments.PerfilFragment"
         android:label="Perfil"
         tools:layout="@layout/fragment_perfil">
+
         <action
             android:id="@+id/action_perfilFragment_to_signInActivity"
             app:destination="@id/signInActivity"/>
+
         <action
             android:id="@+id/action_perfilFragment_to_misOportunidadesFragment"
             app:destination="@id/misOportunidadesFragment" />
-
     </fragment>
 
     <activity

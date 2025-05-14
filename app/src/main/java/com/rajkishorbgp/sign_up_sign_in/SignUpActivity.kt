@@ -4,7 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.rajkishorbgp.sign_up_sign_in.data.UsuarioRepository
 import com.rajkishorbgp.sign_up_sign_in.databinding.ActivitySignUpBinding
+import com.rajkishorbgp.sign_up_sign_in.model.Usuario
 
 class SignUpActivity : AppCompatActivity() {
 
@@ -26,16 +28,19 @@ class SignUpActivity : AppCompatActivity() {
             val password = binding.signupPassword.text.toString()
             val confirmPassword = binding.signupConfirm.text.toString()
 
-            if (email.isNotEmpty() && password.isNotEmpty() && name.isNotEmpty() && password == confirmPassword) {
-                Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(this, SignInActivity::class.java))
-                finish()
-            } else {
-                val errorMessage = when {
-                    password != confirmPassword -> "Las contraseñas no coinciden"
-                    else -> "Completa todos los campos"
+            if (name.isNotEmpty() && email.isNotEmpty() && password == confirmPassword) {
+                val usuario = Usuario(nombre = name, email = email, password = password)
+                val registrado = UsuarioRepository.registrar(this, usuario)
+
+                if (registrado) {
+                    Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this, SignInActivity::class.java))
+                    finish()
+                } else {
+                    Toast.makeText(this, "Ya existe una cuenta con ese correo", Toast.LENGTH_SHORT).show()
                 }
-                Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "Revisa los campos", Toast.LENGTH_SHORT).show()
             }
         }
     }

@@ -8,7 +8,9 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.rajkishorbgp.sign_up_sign_in.data.ChatMessagesRepository
 import com.rajkishorbgp.sign_up_sign_in.databinding.FragmentChatDetailBinding
+import com.rajkishorbgp.sign_up_sign_in.model.Message
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -33,7 +35,7 @@ class ChatDetailFragment : Fragment() {
 
         setupRecyclerView()
         setupClickListeners()
-        loadMockMessages()
+        loadStoredMessages()
     }
 
     private fun setupRecyclerView() {
@@ -55,22 +57,25 @@ class ChatDetailFragment : Fragment() {
     }
 
     private fun sendMessage(text: String) {
+        val chatName = arguments?.getString("nombreChat") ?: return
         val newMessage = Message(
             text = text,
             timestamp = SimpleDateFormat("HH:mm", Locale.getDefault()).format(Date()),
             isSent = true
         )
+
         messages.add(newMessage)
+        ChatMessagesRepository.agregarMensaje(requireContext(), chatName, newMessage)
+
         adapter.notifyItemInserted(messages.size - 1)
         binding.rvMessages.scrollToPosition(messages.size - 1)
     }
 
-    private fun loadMockMessages() {
-        messages.addAll(listOf(
-            Message("¡Hola! ¿Estás interesado en el maratón?", "10:30", false),
-            Message("Sí, me encantaría participar", "10:31", true),
-            Message("La reunión es el sábado a las 8 AM", "10:32", false)
-        ))
+
+    private fun loadStoredMessages() {
+        val chatName = arguments?.getString("nombreChat") ?: return
+        messages.clear()
+        messages.addAll(ChatMessagesRepository.obtenerMensajes(requireContext(), chatName))
         adapter.notifyDataSetChanged()
     }
 
@@ -134,9 +139,3 @@ class MessagesAdapter(private val messages: List<Message>) :
         }
     }
 }
-
-data class Message(
-    val text: String,
-    val timestamp: String,
-    val isSent: Boolean
-)
